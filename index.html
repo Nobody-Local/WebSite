@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="prerender" href="https://blogbooks.net/">
+    <link rel="preload" href="https://blogbooks.net/">
     <!-- <link rel="stylesheet" href="/style.css"> -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
@@ -16,8 +16,6 @@
             /* font-family: 'Zen Kurenaido', sans-serif; */
             margin: 0;
             padding: 0;
-            height: 100%;
-            weight: 100%;
         }
 
         *:not(.inMenu *) {
@@ -116,15 +114,12 @@
         }
 
         footer {
+            top: auto;
+            left: 0;
+            bottom: 0;
             width: 100%;
             background-color: #fff;
             border-top: 1px solid rgb(185, 185, 185);
-            position: sticky;
-            top: 100vh;
-        }
-        body > footer {
-            position: sticky;
-            top: 100vh;
         }
         footer * {
             color: rgb(185, 185, 185);
@@ -137,7 +132,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">BlogBooks Test</div>
+        <div class="logo">Logo</div>
         <div class="menu"><i class='bx bx-menu'></i></div>
         <div class="inMenu">
             <div class="close"><i class='bx bx-x'></i></div>
@@ -159,7 +154,7 @@
     </footer>
     <!-- <script src="/script.js"></script> -->
     <script>
-        const siteTitle = " - Blogbooks Test",
+        const siteTitle = " - name",
               header = document.querySelector("header"),
               openMenu = header.querySelector(".menu"),
               inMenu = header.querySelector(".inMenu"),
@@ -169,9 +164,9 @@
 
         const vanillaURL = location.origin + location.pathname,
               siteMap = "<a href='"+vanillaURL+"'>Home</a>  <a href='"+vanillaURL+"?page=About'>About</a>  <a href='https://blogbooks.net'>Blog</a>  <a href="+vanillaURL+"?page=Community>Community</a><br>By Argument: siteMap";
-        
+
         // Page ID(Parameter)
-        function getParam(name, url) {
+        /* function getParam(name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, "\\$&");
             var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -179,23 +174,71 @@
             if (!results) return null;
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
+        } */
+        window.onload = () => {
+            pages("");
+        };
+
+        function pages(name) {
+            switch (name) {
+                case null:
+                case "":
+                case "home":
+                case "Home":
+                    document.querySelector("main").innerHTML = "Hello, Welcome to here.";
+                    history.pushState("", "Home - BlogBooks", "Home");
+                    document.title = "Home - BlogBooks";
+                    break;
+                /* case "memo":
+                    document.title = "memo[Test]" + siteTitle;
+                    document.querySelector("main").innerHTML = "<div contenteditable spellcheck='false'><b>Hello, This is memo.<br>Let us click on this!</b></div>";
+                    document.querySelector("main").setAttribute("style", "width: 500px");
+                    break; */
+                case "about":
+                case "About":
+                    document.querySelector("main").innerHTML = "<h2>About</h2><div>Created(site) By harun<br>Group: CompassNetworkJP & BlogBooks</div>";
+                    history.pushState("", "About - BlogBooks", "About");
+                    document.title = "About - BlogBooks";
+                    break;
+                case "community":
+                case "Community":
+                    document.querySelector("main").innerHTML = "<h2>Community</h2>";
+                    history.pushState("", "Community - BlogBooks", "Community");
+                    document.title = "Community - BlogBooks";
+                    break;
+                default:
+                    document.querySelector("main").innerHTML = "<h2>Oops, Something went wrong!</h2><div>Error: Could not find page</div><br>Site Map: <br><div style='font-size: large'>"+siteMap+"</div>";
+                    history.pushState("", "Error... - BlogBooks", "Error");
+                    document.title = "Error... - BlogBooks";
+                    break;
+            }
+            inMenu.style.display = "none";
         }
+
+        window.addEventListener("keydown", (e) => {
+            if ((e.key === 'q' || e.key === 'Q') && (inMenu.style.display === "none")) {
+                inMenu.style.display = "block";
+            } else if (((e.key === 'q' || e.key === 'Q') && (inMenu.style.display === "block")) || (e.key === "esc" || e.keyCode === "27") && (inMenu.style.display === "block")) {
+                inMenu.style.display = "none";
+            }
+            return false;
+        })
 
         // Teleport to URL
         logo.addEventListener("click", () => {
-            location.href = vanillaURL;
+            pages("");
         });
         inMenuLists.querySelector(".Home").onclick = () => {
-            location.href = vanillaURL;
-        }
+            pages("");
+        };
         inMenuLists.querySelector(".About").onclick = () => {
-            location.href = vanillaURL + "?page=About";
-        }
+            pages("about");
+        };
         inMenuLists.querySelector(".Blog").onclick = () => {
             location.href = "https://blogbooks.net";
         }
         inMenuLists.querySelector(".Community").onclick = () => {
-            location.href = vanillaURL + "?page=Community";
+            pages("Community");
         }
 
         openMenu.addEventListener("click", () => {
@@ -204,37 +247,6 @@
         closeMenu.addEventListener("click", () => {
             inMenu.style.display = "none";
         })
-
-        // Start Up
-        window.onload = () => {
-            switch (getParam("page")) {
-                case null:
-                case "":
-                    document.title = "Home" + siteTitle;
-                    document.querySelector("main").innerHTML = "Hello, Welcome to here.";
-                    break;
-                case "memo":
-                    document.title = "memo[Test]" + siteTitle;
-                    document.querySelector("main").innerHTML = "<div contenteditable spellcheck='false'><b>Hello, This is memo.<br>Let us click on this!</b></div>";
-                    document.querySelector("main").setAttribute("style", "width: 500px");
-                    break;
-                case "about":
-                case "About":
-                    document.title = "About" + siteTitle;
-                    document.querySelector("main").innerHTML = "<h2>About</h2><div>Created(site) By harun<br>Group: CompassNetworkJP & BlogBooks</div>";
-                    break;
-                case "community":
-                case "Community":
-                    document.title = "Community" + siteTitle;
-                    document.querySelector("main").innerHTML = "<h2>Community</h2>";
-                    break;
-                default:
-                    document.title = "Error: 404" + siteTitle;
-                    document.querySelector("main").innerHTML = "<h2>Oops, Something went wrong!</h2><div>Error: 404 - Could not find page</div><br>Site Map: <br><div style='font-size: large'>"+siteMap+"</div>";
-                    break;
-            }
-            inMenu.style.display = "none";
-        }
     </script>
 </body>
 </html>
