@@ -177,6 +177,10 @@
         } */
         window.onload = () => {
             pages("");
+            var jsonData;
+            fetch("")
+                .then(function(response) { return response.json(); })
+                .then(function(myJson) { jsonData = myJson; })
         };
 
         function pages(name) {
@@ -187,7 +191,6 @@
                 case "Home":
                     document.querySelector("main").innerHTML = "Hello, Welcome to here.";
                     history.pushState("", "Home - BlogBooks", "Home");
-                    document.title = "Home - BlogBooks";
                     break;
                 /* case "memo":
                     document.title = "memo[Test]" + siteTitle;

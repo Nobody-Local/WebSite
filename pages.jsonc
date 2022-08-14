@@ -1,0 +1,26 @@
+{
+    "home": {
+        "source": "",
+        "title" : "Home - BlogBooks"
+    },
+    "about": {
+        "source": "",
+        "title" : "About - BlogBooks"
+    },
+    "community": {
+        "source": "",
+        "title" : "Community - BlogBooks"
+    },
+    "error": {
+        "404": {
+            "source": "",
+            "title" : "Error: 404 - BlogBooks"
+        }
+    },
+    "resource": {
+        "sitemap": [
+            
+        ],
+        "copyright": "© 2022 BlogBooks"
+    }
+}

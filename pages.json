@@ -1,1 +1,26 @@
-""
+{
+    "home": {
+        "source": "<h2>Hello, Welcome to here.</h2>",
+        "title" : "Home - BlogBooks"
+    },
+    "about": {
+        "source": "<h2>About</h2><div>Created(site) By harun<br>Group: CompassNetworkJP & BlogBooks</div>",
+        "title" : "About - BlogBooks"
+    },
+    "community": {
+        "source": "<h2>Community</h2>",
+        "title" : "Community - BlogBooks"
+    },
+    "error": {
+        "404": {
+            "source": "<h2>Oops, Something went wrong!</h2><div>Error: Could not find page</div><br>Site Map: <br><div style='font-size: large'>ComingSoon...</div>",
+            "title" : "Error: 404 - BlogBooks"
+        }
+    },
+    "resource": {
+        "sitemap": {
+            
+        },
+        "copyright": "© 2022 BlogBooks"
+    }
+}
