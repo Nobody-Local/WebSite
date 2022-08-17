@@ -145,111 +145,12 @@
         </div>
     </header>
 
-    <main>
-
-    </main>
+    <main></main>
 
     <footer>
         <p>© 2019-2022 BlogBooks. All rights reserved.</p>
     </footer>
-    <!-- <script src="/script.js"></script> -->
-    <script>
-        const siteTitle = " - name",
-              header = document.querySelector("header"),
-              openMenu = header.querySelector(".menu"),
-              inMenu = header.querySelector(".inMenu"),
-              logo = header.querySelector(".logo"),
-              closeMenu = inMenu.querySelector(".close"),
-              inMenuLists = inMenu.querySelector(".lists");
-
-        const vanillaURL = location.origin + location.pathname,
-              siteMap = "<a href='"+vanillaURL+"'>Home</a>  <a href='"+vanillaURL+"?page=About'>About</a>  <a href='https://blogbooks.net'>Blog</a>  <a href="+vanillaURL+"?page=Community>Community</a><br>By Argument: siteMap";
-
-        // Page ID(Parameter)
-        /* function getParam(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        } */
-        window.onload = () => {
-            pages("");
-            var jsonData;
-            fetch("")
-                .then(function(response) { return response.json(); })
-                .then(function(myJson) { jsonData = myJson; })
-        };
-
-        function pages(name) {
-            switch (name) {
-                case null:
-                case "":
-                case "home":
-                case "Home":
-                    document.querySelector("main").innerHTML = "Hello, Welcome to here.";
-                    history.pushState("", "Home - BlogBooks", "Home");
-                    break;
-                /* case "memo":
-                    document.title = "memo[Test]" + siteTitle;
-                    document.querySelector("main").innerHTML = "<div contenteditable spellcheck='false'><b>Hello, This is memo.<br>Let us click on this!</b></div>";
-                    document.querySelector("main").setAttribute("style", "width: 500px");
-                    break; */
-                case "about":
-                case "About":
-                    document.querySelector("main").innerHTML = "<h2>About</h2><div>Created(site) By harun<br>Group: CompassNetworkJP & BlogBooks</div>";
-                    history.pushState("", "About - BlogBooks", "About");
-                    document.title = "About - BlogBooks";
-                    break;
-                case "community":
-                case "Community":
-                    document.querySelector("main").innerHTML = "<h2>Community</h2>";
-                    history.pushState("", "Community - BlogBooks", "Community");
-                    document.title = "Community - BlogBooks";
-                    break;
-                default:
-                    document.querySelector("main").innerHTML = "<h2>Oops, Something went wrong!</h2><div>Error: Could not find page</div><br>Site Map: <br><div style='font-size: large'>"+siteMap+"</div>";
-                    history.pushState("", "Error... - BlogBooks", "Error");
-                    document.title = "Error... - BlogBooks";
-                    break;
-            }
-            inMenu.style.display = "none";
-        }
-
-        window.addEventListener("keydown", (e) => {
-            if ((e.key === 'q' || e.key === 'Q') && (inMenu.style.display === "none")) {
-                inMenu.style.display = "block";
-            } else if (((e.key === 'q' || e.key === 'Q') && (inMenu.style.display === "block")) || (e.key === "esc" || e.keyCode === "27") && (inMenu.style.display === "block")) {
-                inMenu.style.display = "none";
-            }
-            return false;
-        })
-
-        // Teleport to URL
-        logo.addEventListener("click", () => {
-            pages("");
-        });
-        inMenuLists.querySelector(".Home").onclick = () => {
-            pages("");
-        };
-        inMenuLists.querySelector(".About").onclick = () => {
-            pages("about");
-        };
-        inMenuLists.querySelector(".Blog").onclick = () => {
-            location.href = "https://blogbooks.net";
-        }
-        inMenuLists.querySelector(".Community").onclick = () => {
-            pages("Community");
-        }
-
-        openMenu.addEventListener("click", () => {
-            inMenu.style.display = "block";
-        });
-        closeMenu.addEventListener("click", () => {
-            inMenu.style.display = "none";
-        })
-    </script>
+    
+    <script src="/script.js" type="module"></script>
 </body>
 </html>
