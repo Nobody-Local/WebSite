@@ -1,3 +1,4 @@
 {
-    "editor.autoIndent": "full"
+    "editor.autoIndent": "full",
+    "editor.bracketPairColorization.enabled": true
 }
